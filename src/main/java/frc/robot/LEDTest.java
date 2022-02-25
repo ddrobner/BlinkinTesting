@@ -19,8 +19,7 @@ public class LEDTest extends RepeatingPooledSubsystem {
 
     public void  task(){
         this.led.setLEDPattern(Arrays.asList(Pattern.values()).get(idx));
-        if (idx == Pattern.values().length) { idx = 0; };
-        idx += 1;
+        if (idx == Pattern.values().length) { idx = 0; } else { idx += 1; };
     }
 
     @Override
