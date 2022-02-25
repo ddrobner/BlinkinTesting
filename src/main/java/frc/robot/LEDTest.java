@@ -10,16 +10,24 @@ public class LEDTest extends RepeatingPooledSubsystem {
 
     private final BlinkinLEDController led;
     private int idx;
+    private int frames;
 
     LEDTest(int pwmPort) {
-        super (3, TimeUnit.SECONDS);
+        super (20, TimeUnit.MILLISECONDS);
         led = new BlinkinLEDController(pwmPort);
         idx = 0;
+	frames = 0;
     }
 
     public void task(){
+	
         this.led.setLEDPattern(Arrays.asList(Pattern.values()).get(idx));
-        if (idx == Pattern.values().length) { idx = 0; } else { idx += 1; };
+	frames += 1;
+	if(frames > 500){
+		frames = 0;
+		idx += 1;
+        	if (idx == Pattern.values().length) { idx = 0; };
+	}
     }
 
     @Override
