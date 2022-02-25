@@ -8,10 +8,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import ca.team3161.lib.robot.BlinkinLEDController;
-import ca.team3161.lib.robot.BlinkinLEDController.Pattern;;
-
-import edu.wpi.first.wpilibj.Timer;
+import frc.robot.LEDTest;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -24,9 +21,7 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
-
-  private final BlinkinLEDController led = new BlinkinLEDController(0);
-  private final Timer time = new Timer();
+  private LEDTest ledtest;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -37,7 +32,8 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-    this.led.setLEDPattern(Pattern.SINELON_RAINBOW);
+    ledtest = new LEDTest(0);
+    ledtest.start();
   }
 
   /**
@@ -49,13 +45,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    this.led.setLEDPattern(Pattern.SOLID_BLUE);
-    Timer.delay(5);
-    this.led.setLEDPattern(Pattern.TWINKLES_PARTY);
-    Timer.delay(5);
-    this.led.setLEDPattern(Pattern.WAVES_LAVA);
-    Timer.delay(5);
-    this.led.setLEDPattern(Pattern.HEARTBEAT_MEDIUM_COLOUR1);
   }
   /**
    * This autonomous (along with the chooser code above) shows how to select between different
@@ -98,7 +87,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called once when the robot is disabled. */
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+    ledtest.cancel();
+  }
 
   /** This function is called periodically when disabled. */
   @Override
