@@ -33,7 +33,6 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
     ledtest = new LEDTest(0);
-    ledtest.start();
   }
 
   /**
@@ -45,6 +44,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    ledtest.start();
   }
   /**
    * This autonomous (along with the chooser code above) shows how to select between different
