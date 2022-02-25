@@ -8,6 +8,11 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import ca.team3161.lib.robot.BlinkinLEDController;
+import ca.team3161.lib.robot.BlinkinLEDController.Pattern;;
+
+import edu.wpi.first.wpilibj.Timer;
+
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -20,6 +25,9 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
+  private final BlinkinLEDController led = new BlinkinLEDController(0);
+  private final Timer time = new Timer();
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -29,6 +37,7 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+    this.led.setLEDPattern(Pattern.SINELON_RAINBOW);
   }
 
   /**
@@ -39,8 +48,15 @@ public class Robot extends TimedRobot {
    * SmartDashboard integrated updating.
    */
   @Override
-  public void robotPeriodic() {}
-
+  public void robotPeriodic() {
+    this.led.setLEDPattern(Pattern.SOLID_BLUE);
+    Timer.delay(5);
+    this.led.setLEDPattern(Pattern.SOLID_BLUE);
+    Timer.delay(5);
+    this.led.setLEDPattern(Pattern.SOLID_BLUE);
+    Timer.delay(5);
+    this.led.setLEDPattern(Pattern.SOLID_BLUE);
+  }
   /**
    * This autonomous (along with the chooser code above) shows how to select between different
    * autonomous modes using the dashboard. The sendable chooser code works with the Java
