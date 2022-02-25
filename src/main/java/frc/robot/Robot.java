@@ -51,11 +51,11 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     this.led.setLEDPattern(Pattern.SOLID_BLUE);
     Timer.delay(5);
-    this.led.setLEDPattern(Pattern.SOLID_BLUE);
+    this.led.setLEDPattern(Pattern.TWINKLES_PARTY);
     Timer.delay(5);
-    this.led.setLEDPattern(Pattern.SOLID_BLUE);
+    this.led.setLEDPattern(Pattern.WAVES_LAVA);
     Timer.delay(5);
-    this.led.setLEDPattern(Pattern.SOLID_BLUE);
+    this.led.setLEDPattern(Pattern.HEARTBEAT_MEDIUM_COLOUR1);
   }
   /**
    * This autonomous (along with the chooser code above) shows how to select between different
